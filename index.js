@@ -33,9 +33,11 @@ app.handleReqRes = (req, res) => {
   const trimmedPath = path.replace(/^\/+|\/+$/gm, "");
   // console.log(trimmedPath);
   // find http method
-  const method = req.method;
+  const method = req.method.toLowerCase();
   // console.log(method);
-  
+  const headerObj = req.headers;
+  console.log(headerObj);
+
   // response handling 
   res.end("Uptime Monitoring server is running");
 }
