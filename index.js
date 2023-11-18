@@ -28,7 +28,10 @@ app.handleReqRes = (req, res) => {
   // request handling 
   // get the url and parse it 
   const parsedUrl = url.parse(req.url, true); // true gives full pathname with queries
-  console.log(parsedUrl);
+  // console.log(parsedUrl);
+  const path = parsedUrl.pathname;
+  const trimmedPath = path.replace(/^\/+|\/+$/gm, "")
+  // console.log(trimmedPath);
   // response handling 
   res.end("Uptime Monitoring server is running");
 }
