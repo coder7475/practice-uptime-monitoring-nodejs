@@ -1,7 +1,7 @@
 // dependencies
 const url = require('url');
 const { StringDecoder } = require('node:string_decoder');
-
+const routes = require('./../routes');
 // object scafolding
 const handler = {};
 
