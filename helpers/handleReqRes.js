@@ -32,6 +32,18 @@ handler.handleReqRes = (req, res) => {
     headerObj
   }
 
+  const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFoundHandler;
+
+  chosenHandler(reqObj, (statusCode, payload) => {
+     statusCode = typeof(statusCode) === "number"? statusCode : 404;
+     payload = typeof(payload) === "object"? payload: {};
+
+     const payloadString = JSON.stringify(payload);
+
+     res.writeHead(statusCode);
+     res.end(payloadString);
+  })
+
   // post method + sent data streaming + how to decode buffer
   const decoder = new StringDecoder("utf-8");
   let realData = "";
