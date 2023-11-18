@@ -31,12 +31,14 @@ app.handleReqRes = (req, res) => {
   // console.log(parsedUrl);
   const path = parsedUrl.pathname;
   const trimmedPath = path.replace(/^\/+|\/+$/gm, "");
+  const queryObj = parsedUrl.query;
   // console.log(trimmedPath);
   // find http method
   const method = req.method.toLowerCase();
   // console.log(method);
   const headerObj = req.headers;
-  console.log(headerObj);
+  // console.log(headerObj);
+  console.log(queryObj);
 
   // response handling 
   res.end("Uptime Monitoring server is running");
