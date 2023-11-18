@@ -7,6 +7,7 @@
 // dependencies
 const http = require('http');
 const url = require('url');
+const { StringDecoder } = require('node:string_decoder');
 // app object - module scaffolding
 const app = {};
 
@@ -33,15 +34,31 @@ app.handleReqRes = (req, res) => {
   const trimmedPath = path.replace(/^\/+|\/+$/gm, "");
   const queryObj = parsedUrl.query;
   // console.log(trimmedPath);
+
   // find http method
   const method = req.method.toLowerCase();
   // console.log(method);
   const headerObj = req.headers;
   // console.log(headerObj);
-  console.log(queryObj);
+  // console.log(queryObj);
 
-  // response handling 
-  res.end("Uptime Monitoring server is running");
+  // post method + sent data streaming + how to decode buffer
+  const decoder = new StringDecoder("utf-8");
+  let realData = "";
+  // data streaming
+  req.on('data', (buffer) => {
+    realData += decoder.write(buffer);
+  })
+  // stream end
+  req.on('end', () => {
+    realData += decoder.end();
+
+    console.log(realData);
+
+    // response handling 
+    res.end("Uptime Monitoring server is running");
+  })
+
 }
 
 // start the server
