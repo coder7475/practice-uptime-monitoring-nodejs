@@ -14,13 +14,22 @@ handler.handleReqRes = (req, res) => {
   const trimmedPath = path.replace(/^\/+|\/+$/gm, "");
   const queryObj = parsedUrl.query;
   // console.log(trimmedPath);
-
   // find http method
   const method = req.method.toLowerCase();
   // console.log(method);
   const headerObj = req.headers;
   // console.log(headerObj);
   // console.log(queryObj);
+
+  // ceate request object
+  const reqObj = {
+    parsedUrl,
+    path,
+    trimmedPath,
+    method,
+    queryObj,
+    headerObj
+  }
 
   // post method + sent data streaming + how to decode buffer
   const decoder = new StringDecoder("utf-8");
