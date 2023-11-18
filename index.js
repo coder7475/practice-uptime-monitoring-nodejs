@@ -6,6 +6,7 @@
  */
 // dependencies
 const http = require('http');
+const url = require('url');
 // app object - module scaffolding
 const app = {};
 
@@ -24,6 +25,11 @@ app.createServer = () => {
 
 // handle request and response
 app.handleReqRes = (req, res) => {
+  // request handling 
+  // get the url and parse it 
+  const parsedUrl = url.parse(req.url, true); // true gives full pathname with queries
+  console.log(parsedUrl);
+  // response handling 
   res.end("Uptime Monitoring server is running");
 }
 
