@@ -14,7 +14,7 @@ const data = require('./lib/data');
 const app = {};
 
 // testing file system
-data.update('test', 'newFile', { name: "England", language: "English"} ,(err) => {
+data.update('test', 'newFile', { name: "America", language: "English"} ,(err) => {
   console.log(err);
 })
 
